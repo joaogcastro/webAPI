@@ -1,0 +1,14 @@
+{
+    "recommendations": [
+        "dbaeumer.vscode-eslint",
+        "usernamehw.errorlens",
+        "davidkol.fastcompare",
+        "github.remotehub",
+        "visualstudioexptteam.vscodeintellicode",
+        "ms-vscode.js-debug-nightly",
+        "orta.vscode-jest",
+        "natqe.reload",
+        "vscode-icons-team.vscode-icons",
+        "eamodio.gitlens"
+    ]
+}

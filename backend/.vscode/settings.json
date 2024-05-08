@@ -1,0 +1,5 @@
+{
+    "extensions.ignoreRecommendations": false,
+    "files.autoSave": "afterDelay",
+    "jest.runMode": "on-demand",
+}
