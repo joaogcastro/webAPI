@@ -1,0 +1,6 @@
+{
+    "db_host": "localhost",
+    "db_user": "root",
+    "db_password": "Abc123!.",
+    "db_name": "dbApi"
+}

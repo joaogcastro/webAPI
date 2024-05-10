@@ -1,6 +1,6 @@
 export class Sale {
-    constructor(idSale = null, date = null, employee = null, products = null, commission = null, totalPrice = null) {
-        this.idSale = idSale;
+    constructor(saleId = null, date = null, employee = null, products = null, commission = null, totalPrice = null) {
+        this.saleId = saleId;
         this.date = date;
         this.employee = employee;
         this.products = products;

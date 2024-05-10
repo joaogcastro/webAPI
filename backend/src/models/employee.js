@@ -1,6 +1,6 @@
 export class Employee {
-    constructor(idEmployee = null, name = null, phone = null, role = null) {
-        this.idEmployee = idEmployee;
+    constructor(employeeId = null, name = null, phone = null, role = null) {
+        this.employeeId = employeeId;
         this.name = name;
         this.phone = phone;
         this.role = role;

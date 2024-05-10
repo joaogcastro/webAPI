@@ -1,6 +1,6 @@
 export class Product {
-    constructor(idProduct = null, name = null, brand = null, color = null, size = null, quantity = null, price = null) {
-        this.idProduct = idProduct;
+    constructor(productId = null, name = null, brand = null, color = null, size = null, quantity = null, price = null) {
+        this.productId = productId;
         this.name = name;
         this.brand = brand;
         this.color = color;
