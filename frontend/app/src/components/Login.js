@@ -9,14 +9,14 @@ function Login() {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://127.0.0.1:3000/login', {
+            const response = await axios.post('http://127.0.0.10:3001/login', {
                 email,
                 password
             }, {
                 headers: { 'Content-Type': 'application/json' }
             });
             console.log('Login Successful:', response.data);
-            // Aqui você pode redirecionar o usuário ou atualizar o estado global
+
         } catch (error) {
             console.error('Login Failed:', error.response.data);
         }

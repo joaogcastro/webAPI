@@ -1,11 +1,8 @@
 const express = require('express');
-// const bodyParser = require('body-parser');
 const router = express.Router();
 const EmployeeController = require('./controllers/employeeController.js');
 const ProductController = require('./controllers/productController.js');
 
-// Você já tem bodyParser configurado no app.js, então não é necessário aqui
-// router.use(bodyParser.json());
 
 const users = [{
     id: 1,
