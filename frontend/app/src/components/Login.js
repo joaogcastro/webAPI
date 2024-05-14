@@ -9,7 +9,7 @@ function Login() {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://127.0.0.10:3001/login', {
+            const response = await axios.post('http://127.0.0.2:3000/login', {
                 email,
                 password
             }, {

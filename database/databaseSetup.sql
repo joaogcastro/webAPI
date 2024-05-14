@@ -36,7 +36,7 @@ create table productSale (
 alter table sale add foreign key(employeeId) references employee (employeeId);
 
 create table login (
-	loginId int,
+	loginId int primary key auto_increment,
     username varchar(40),
     email varchar(40),
     password varchar(40)
