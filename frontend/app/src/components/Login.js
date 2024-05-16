@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 
 function Login() {
-    const [email, setEmail] = useState('');
+    const [username, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const handleLogin = async (e) => {
@@ -10,7 +10,7 @@ function Login() {
 
         try {
             const response = await axios.post('http://127.0.0.2:3000/login', {
-                email,
+                username,
                 password
             }, {
                 headers: { 'Content-Type': 'application/json' }
@@ -26,7 +26,7 @@ function Login() {
       <div className="login-form-wrap">
             <h2>Login</h2>
             <form className='login-form' onSubmit={handleLogin}>
-              <input type="email" name="email" placeholder="Email" required
+              <input type="username" name="username" placeholder="Username" required
               onChange={(e) => setEmail(e.target.value)}/>
               <input type="password" name="password" placeholder="Password" required
               onChange={(e) => setPassword(e.target.value)}/>
