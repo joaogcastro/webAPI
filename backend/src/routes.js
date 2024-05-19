@@ -1,39 +1,42 @@
-const express = require('express');
-const router = express.Router();
-const EmployeeController = require('./controllers/employeeController.js');
-const ProductController = require('./controllers/productController.js');
+import express from 'express';
+import { database } from './database/db.js';
+import { User } from './models/user.js';
 
+const routes = express.Router();
 
-const users = [{
-    id: 1,
-    name: 'Vini P',
-    email: 'viniciusprado7606@gmail.com',
-    password: '123456'
-}];
+routes.post('/register', async (req, res) => {
+    const { username, password, email, category } = req.body;
+    const userToRegister = new User(username, password, email, category);
 
-router.get('/', (req, res) => {
-    res.send('Testing!');
-});
-
-router.post('/login', (req, res) => {
-    const { email, password } = req.body;
-    const user = users.find(user => user.email === email && user.password === password);
-    if (user) {
-        return res.status(200).json({ message: 'Login successful', user });
+    if (category !== 'funcionario' && category !== 'gerente') {
+        return res.status(400).json({ message: 'Categoria inválida' });
     }
-    return res.status(401).json({ message: 'Invalid credentials' });
+
+    const sql = 'INSERT INTO login (username, password, email, category) VALUES (?, ?, ?, ?)';
+    database.query(sql, [userToRegister.username, userToRegister.password, userToRegister.email, userToRegister.category], (error, results) => {
+        if (error) {
+            return res.status(500).json({ error: 'Erro ao registrar usuário' });
+        }
+        return res.status(201).json({ message: 'Usuário registrado com sucesso!' });
+    });
 });
 
-// Employee Routes
-router.get('/employee', (req, res) => {
-    const employees = EmployeeController.readAll();
-    res.status(200).json(employees);
+routes.post('/login', async (req, res) => {
+    const { username, password, category } = req.body;
+
+    const sql = 'SELECT * FROM login WHERE username = ? AND password = ? AND category = ?';
+    database.query(sql, [username, password, category], (error, results) => {
+        if (error) {
+            return res.status(500).json({ error: 'Erro interno do servidor' });
+        }
+        if (results.length > 0) {
+            return res.status(200).json({ message: 'Login bem-sucedido' });
+        } else {
+            return res.status(401).json({ message: 'Credenciais inválidas' });
+        }
+    });
 });
 
-// Product Routes
-router.get('/product', (req, res) => {
-    const products = ProductController.readAll();
-    res.status(200).json(products);
-});
-
-module.exports = router;
+export {
+    routes
+};

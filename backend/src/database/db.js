@@ -1,16 +1,23 @@
-const config = require('../../config/databaseConfig.json');
-const mysql = require('mysql');
+import mysql from 'mysql';
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
 
-const databaseConnection = mysql.createConnection({
+const config = JSON.parse(readFileSync(resolve('config/databaseConfig.json'), 'utf-8'));
+
+const database = mysql.createConnection({
     host: config.db_host,
     user: config.db_user,
     password: config.db_password,
     database: config.db_name
 });
 
-databaseConnection.connect((error) => {
-    if (error) {throw error;}
+database.connect((error) => {
+    if (error) {
+        throw error;
+    }
     console.log(`Connected to the Database ${config.db_name}`);
 });
 
-module.exports = databaseConnection;
+export {
+    database
+};

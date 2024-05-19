@@ -2,16 +2,18 @@ import axios from 'axios';
 import { useState } from 'react';
 
 function Login() {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [category, setCategory] = useState('funcionario');
 
     const handleLogin = async (e) => {
         e.preventDefault();
 
         try {
             const response = await axios.post('http://127.0.0.2:3000/login', {
-                email,
-                password
+                username,
+                password,
+                category
             }, {
                 headers: { 'Content-Type': 'application/json' }
             });
@@ -23,17 +25,19 @@ function Login() {
     }
 
     return (
-      <div className="login-form-wrap">
+        <div className="login-form-wrap">
             <h2>Login</h2>
             <form className='login-form' onSubmit={handleLogin}>
-              <input type="email" name="email" placeholder="Email" required
-              onChange={(e) => setEmail(e.target.value)}/>
-              <input type="password" name="password" placeholder="Password" required
-              onChange={(e) => setPassword(e.target.value)}/>
-              <button type="submit" className='btn-login'>Login</button>
+                <input type="text" name="username" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                <input type="password" name="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                <select name="category" value={category} onChange={(e) => setCategory(e.target.value)}>
+                    <option value="funcionario">Funcionário</option>
+                    <option value="gerente">Gerente</option>
+                </select>
+                <button type="submit" className='btn-login'>Login</button>
             </form>
-          </div>
+        </div>
     );
-  }
+}
 
-  export default Login;
+export default Login;

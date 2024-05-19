@@ -1,11 +1,11 @@
-module.exports = {
+export default {
     languageOptions: {
         parserOptions: {
             ecmaVersion: 2020,
             sourceType: 'module'
         },
         globals: {
-            es6: false,
+            es6: true,
             node: true,
             jest: true
         }
